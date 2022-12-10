@@ -1,3 +1,6 @@
+using System;
+using System.Drawing;
+
 namespace Paint2
 {
     public partial class Form1 : Form
@@ -61,19 +64,36 @@ namespace Paint2
             Rectangle rectangle = Screen.PrimaryScreen.Bounds;
             map = new Bitmap(rectangle.Width, rectangle.Height);
             graphics = Graphics.FromImage(map);
+
+            pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
+            pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
         }
         private void label1_MouseDown(object sender, MouseEventArgs e)
         {
-            isMouse = true;
+
         }
 
         private void label1_MouseUp(object sender, MouseEventArgs e)
         {
-            isMouse = false;
-            arrayPoints.ResetPoints();
+
         }
 
         private void label1_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            isMouse = true;
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (!isMouse)
             {
@@ -86,6 +106,49 @@ namespace Paint2
                 pictureBox1.Image = map;
                 arrayPoints.SetPoint(e.X, e.Y);
             }
+        }
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            isMouse = false;
+            arrayPoints.ResetPoints();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            pen.Color = ((Button)sender).BackColor;
+        }
+
+        //Color SelectedColor 
+        //{ 
+        //    get 
+        //    {
+        //        return colorDialog1.Color;
+        //    } 
+        //}
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            //if(colorDialog1.ShowDialog() == DialogResult.OK)
+            //{
+            //    pen.Color = colorDialog1.Color;
+            //    ((Button)sender).BackColor = colorDialog1.Color;
+            //}
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            pen.Width = trackBar1.Value;
         }
     }
 }
